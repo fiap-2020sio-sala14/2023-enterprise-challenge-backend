@@ -1,0 +1,20 @@
+services:
+    compute-engine:
+        instances:
+            - name: mindwired-node1-cloud-t2a-8c8t32gb
+              machine-type: t2a-standard-8
+              zone: us-central1-a
+              metadata:
+                  items:
+                      - key: startup-script
+                        value: |
+                            #!/bin/bash
+                            # Install PostgreSQL
+                            sudo apt-get update
+                            sudo apt-get install -y postgresql postgresql-contrib
+
+                            # Run PostgreSQL
+                            sudo service postgresql start
+              tags:
+                  items:
+                      - http-server
